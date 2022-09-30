@@ -1,25 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import Expenses from './components/expenses/Expenses';
+import NewExpense from './components/newExpense/NewExpense';
+
+import React, { useState } from 'react';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	const INITIAL_EXPENSES = [
+		{
+			id: '1',
+			date: new Date(2020, 2, 28),
+			amount: 300,
+			title: 'Nintendo Switch',
+		},
+		{ id: '2', date: new Date(2021, 4, 30), amount: 10, title: 'Book' },
+		{ id: '3', date: new Date(2022, 5, 21), amount: 250000, title: 'Ferrari' },
+	];
+
+	const [idCount, setIdCount] = useState(4);
+	const [expenses, setExpenses] = useState(INITIAL_EXPENSES);
+
+	function saveExpenseHandler(enteredData) {
+		console.log('handling submit...', enteredData);
+		enteredData.id = idCount;
+		setIdCount((prevExpenses) => prevExpenses + 1);
+		setExpenses((prevExpenses) => [enteredData, ...prevExpenses]);
+	}
+
+	return (
+		<div>
+			<NewExpense onSaveExpenseData={saveExpenseHandler} />
+			<Expenses expenses={expenses} />
+		</div>
+	);
 }
 
 export default App;

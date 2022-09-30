@@ -1,0 +1,22 @@
+button, input {
+  text-align: center;
+  margin-left: 0.4rem;
+  border: 1px solid #ececec;
+}
+
+button {
+  background-color: #215698;
+  color: white;
+  border-radius: 12px;
+  margin-top: 0.2rem;
+  width: 100%;
+}
+
+button:hover {
+  background-color:#0a3262;
+}
+
+input {
+  color: rgb(38, 38, 38);
+  border-radius: 12px;
+}
